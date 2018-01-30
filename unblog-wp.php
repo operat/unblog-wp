@@ -4,7 +4,7 @@ Plugin Name: Unblog WP
 Plugin URI: https://github.com/operat/unblog-wp
 GitHub Plugin URI: https://github.com/operat/unblog-wp
 Description: Remove blog specific functionality like posts and comments from WordPress.
-Version: 1.0
+Version: 1.1
 Author: Operat
 Author URI: https://www.operat.de
 License: GNU GPLv3

@@ -62,8 +62,17 @@ class UnblogWP_UnblogPosts {
    }
 
    public function disable_support() {
+      // Unregister taxonomies
       unregister_taxonomy_for_object_type('category', 'post');
       unregister_taxonomy_for_object_type('post_tag', 'post');
+
+      // Disable archive pages
+      add_action('template_redirect', function () {
+         if (is_category() || is_tag() || is_date() || is_author()) {
+            global $wp_query;
+            $wp_query->set_404();
+         }
+      });
    }
 
    public function redirect_to_error_page() {
