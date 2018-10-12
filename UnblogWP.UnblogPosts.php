@@ -71,18 +71,19 @@ class UnblogWP_UnblogPosts {
          if (is_category() || is_tag() || is_date() || is_author()) {
             global $wp_query;
             $wp_query->set_404();
+            status_header(404);
          }
       });
    }
 
    public function redirect_to_error_page() {
-      add_action('posts_results', function ($posts = array()) {
-         global $wp_query;
-         $look_for = "wp_posts.post_type = 'post'";
-         $instance = strpos( $wp_query->request, $look_for);
-         if ($instance !== false) { $posts = array(); }
-         return $posts;
-      });
+      add_action( 'template_redirect', function () {
+          if (is_single()) {
+            global $wp_query;
+            $wp_query->set_404();
+            status_header(404);
+          }
+      } );
    }
 
    public function remove_from_search() {
