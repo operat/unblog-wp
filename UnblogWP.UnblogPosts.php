@@ -78,7 +78,7 @@ class UnblogWP_UnblogPosts {
 
    public function redirect_to_error_page() {
       add_action( 'template_redirect', function () {
-          if (is_single()) {
+         if (get_post_type() === 'post' && is_single()) {
             global $wp_query;
             $wp_query->set_404();
             status_header(404);
