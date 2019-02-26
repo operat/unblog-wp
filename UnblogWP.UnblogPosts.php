@@ -90,8 +90,8 @@ class UnblogWP_UnblogPosts {
       add_filter('pre_get_posts', function ($query) {
          if (!is_search()) { return $query; }
          $post_types = get_post_types();
-         /* Exclude posts (and ACF fields) from query results */
-         foreach (array('post', 'acf-field', 'acf-field-group') as $value) {
+         /* Exclude posts from query results */
+         foreach (array('post') as $value) {
             if (array_key_exists($value, $post_types) ) { unset($post_types[$value]); }
          }
          $query->set('post_type', array_values($post_types));
